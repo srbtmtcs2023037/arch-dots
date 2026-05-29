@@ -186,46 +186,6 @@ ContentPage {
     }
 
     ContentSection {
-        icon: "rule"
-        title: Translation.tr("Policies")
-
-        ConfigRow {
-
-            // Weeb policy
-            ColumnLayout {
-
-                ContentSubsectionLabel {
-                    text: Translation.tr("Weeb")
-                }
-
-                ConfigSelectionArray {
-                    currentValue: Config.options.policies.weeb
-                    onSelected: newValue => {
-                        Config.options.policies.weeb = newValue;
-                    }
-                    options: [
-                        {
-                            displayName: Translation.tr("No"),
-                            icon: "close",
-                            value: 0
-                        },
-                        {
-                            displayName: Translation.tr("Yes"),
-                            icon: "check",
-                            value: 1
-                        },
-                        {
-                            displayName: Translation.tr("Closet"),
-                            icon: "ev_shadow",
-                            value: 2
-                        }
-                    ]
-                }
-            }
-        }
-    }
-
-    ContentSection {
         icon: "notification_sound"
         title: Translation.tr("Sounds")
         ConfigRow {
