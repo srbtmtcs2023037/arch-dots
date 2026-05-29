@@ -34,7 +34,7 @@ ShellRoot {
 
 
     // Panel families
-    property list<string> families: ["ii", "waffle"]
+    property list<string> families: ["ii"] // waffle family removed due to missing dependencies
     function cyclePanelFamily() {
         const currentIndex = families.indexOf(Config.options.panelFamily)
         const nextIndex = (currentIndex + 1) % families.length
@@ -52,10 +52,11 @@ ShellRoot {
         component: IllogicalImpulseFamily {}
     }
 
-    PanelFamilyLoader {
-        identifier: "waffle"
-        component: WaffleFamily {}
-    }
+    // Waffle family loader removed due to missing external dependencies
+    // PanelFamilyLoader {
+    //     identifier: "waffle"
+    //     component: WaffleFamily {}
+    // }
 
 
     // Shortcuts
