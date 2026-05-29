@@ -40,9 +40,11 @@ Item { // Bar content region
         anchors {
             fill: parent
             margins: Config.options.bar.cornerStyle === 1 ? (Appearance.sizes.hyprlandGapsOut) : 0 // idk why but +1 is needed
+            leftMargin: 50  // Add left margin to shorten width
+            rightMargin: 50  // Add right margin to shorten width
         }
-        color: Config.options.bar.showBackground ? Appearance.colors.colLayer0 : "transparent"
-        radius: Config.options.bar.cornerStyle === 1 ? Appearance.rounding.windowRounding : 0
+        color: Config.options.bar.showBackground ? "#2C2C2C" : "transparent"  // Changed to dark grey
+        radius: 0  // Pure rectangle - no rounding
         border.width: Config.options.bar.cornerStyle === 1 ? 1 : 0
         border.color: Appearance.colors.colLayer0Border
     }
