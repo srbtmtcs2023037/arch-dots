@@ -38,15 +38,11 @@ Item { // Bar content region
     Rectangle {
         id: barBackground
         anchors {
-            left: parent.left
-            right: parent.right
-            top: parent.top
-            bottom: parent.bottom
-            leftMargin: 50  // Shorten width from left
-            rightMargin: 50  // Shorten width from right
+            fill: parent
+            margins: Config.options.bar.cornerStyle === 1 ? (Appearance.sizes.hyprlandGapsOut) : 0 // idk why but +1 is needed
         }
-        color: Config.options.bar.showBackground ? "#2C2C2C" : "transparent"  // Dark grey
-        radius: 0  // Pure rectangle - no rounding
+        color: Config.options.bar.showBackground ? Appearance.colors.colLayer0 : "transparent"
+        radius: Config.options.bar.cornerStyle === 1 ? Appearance.rounding.windowRounding : 0
         border.width: Config.options.bar.cornerStyle === 1 ? 1 : 0
         border.color: Appearance.colors.colLayer0Border
     }
