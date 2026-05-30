@@ -56,11 +56,10 @@ Scope {
                 exclusiveZone: (Config?.options.bar.autoHide.enable && (!mustShow || !Config?.options.bar.autoHide.pushWindows)) ? 0 :
                     Appearance.sizes.baseBarHeight + (Config.options.bar.cornerStyle === 1 ? Appearance.sizes.hyprlandGapsOut : 0)
                 WlrLayershell.namespace: "quickshell:bar"
-                implicitHeight: Appearance.sizes.barHeight
-                // Mask disabled to allow pure rectangle bar
-                // mask: Region {
-                //     item: hoverMaskRegion
-                // }
+                implicitHeight: Appearance.sizes.barHeight + Appearance.rounding.screenRounding
+                mask: Region {
+                    item: hoverMaskRegion
+                }
                 color: "transparent"
 
                 // Positioning
@@ -142,75 +141,75 @@ Scope {
                         }
                     }
 
-                    // Round decorators disabled - bar is now a pure rectangle
-                    // Loader {
-                    //     id: roundDecorators
-                    //     anchors {
-                    //         left: parent.left
-                    //         right: parent.right
-                    //         top: barContent.bottom
-                    //         bottom: undefined
-                    //     }
-                    //     height: Appearance.rounding.screenRounding
-                    //     active: showBarBackground && Config.options.bar.cornerStyle === 0 // Hug
-                    //
-                    //     states: State {
-                    //         name: "bottom"
-                    //         when: Config.options.bar.bottom
-                    //         AnchorChanges {
-                    //             target: roundDecorators
-                    //             anchors {
-                    //                 right: parent.right
-                    //                 left: parent.left
-                    //                 top: undefined
-                    //                 bottom: barContent.top
-                    //             }
-                    //         }
-                    //     }
-                    //
-                    //     sourceComponent: Item {
-                    //         implicitHeight: Appearance.rounding.screenRounding
-                    //         RoundCorner {
-                    //             id: leftCorner
-                    //             anchors {
-                    //                 top: parent.top
-                    //                 bottom: parent.bottom
-                    //                 left: parent.left
-                    //             }
-                    //
-                    //             implicitSize: Appearance.rounding.screenRounding
-                    //             color: showBarBackground ? Appearance.colors.colLayer0 : "transparent"
-                    //
-                    //             corner: RoundCorner.CornerEnum.TopLeft
-                    //             states: State {
-                    //                 name: "bottom"
-                    //                 when: Config.options.bar.bottom
-                    //                 PropertyChanges {
-                    //                     leftCorner.corner: RoundCorner.CornerEnum.BottomLeft
-                    //                 }
-                    //             }
-                    //         }
-                    //         RoundCorner {
-                    //             id: rightCorner
-                    //             anchors {
-                    //                 right: parent.right
-                    //                 top: !Config.options.bar.bottom ? parent.top : undefined
-                    //                 bottom: Config.options.bar.bottom ? parent.bottom : undefined
-                    //             }
-                    //             implicitSize: Appearance.rounding.screenRounding
-                    //             color: showBarBackground ? Appearance.colors.colLayer0 : "transparent"
-                    //
-                    //             corner: RoundCorner.CornerEnum.TopRight
-                    //             states: State {
-                    //                 name: "bottom"
-                    //                 when: Config.options.bar.bottom
-                    //                 PropertyChanges {
-                    //                     rightCorner.corner: RoundCorner.CornerEnum.BottomRight
-                    //                 }
-                    //             }
-                    //         }
-                    //     }
-                    // }
+                    // Round decorators
+                    Loader {
+                        id: roundDecorators
+                        anchors {
+                            left: parent.left
+                            right: parent.right
+                            top: barContent.bottom
+                            bottom: undefined
+                        }
+                        height: Appearance.rounding.screenRounding
+                        active: showBarBackground && Config.options.bar.cornerStyle === 0 // Hug
+
+                        states: State {
+                            name: "bottom"
+                            when: Config.options.bar.bottom
+                            AnchorChanges {
+                                target: roundDecorators
+                                anchors {
+                                    right: parent.right
+                                    left: parent.left
+                                    top: undefined
+                                    bottom: barContent.top
+                                }
+                            }
+                        }
+
+                        sourceComponent: Item {
+                            implicitHeight: Appearance.rounding.screenRounding
+                            RoundCorner {
+                                id: leftCorner
+                                anchors {
+                                    top: parent.top
+                                    bottom: parent.bottom
+                                    left: parent.left
+                                }
+
+                                implicitSize: Appearance.rounding.screenRounding
+                                color: showBarBackground ? Appearance.colors.colLayer0 : "transparent"
+
+                                corner: RoundCorner.CornerEnum.TopLeft
+                                states: State {
+                                    name: "bottom"
+                                    when: Config.options.bar.bottom
+                                    PropertyChanges {
+                                        leftCorner.corner: RoundCorner.CornerEnum.BottomLeft
+                                    }
+                                }
+                            }
+                            RoundCorner {
+                                id: rightCorner
+                                anchors {
+                                    right: parent.right
+                                    top: !Config.options.bar.bottom ? parent.top : undefined
+                                    bottom: Config.options.bar.bottom ? parent.bottom : undefined
+                                }
+                                implicitSize: Appearance.rounding.screenRounding
+                                color: showBarBackground ? Appearance.colors.colLayer0 : "transparent"
+
+                                corner: RoundCorner.CornerEnum.TopRight
+                                states: State {
+                                    name: "bottom"
+                                    when: Config.options.bar.bottom
+                                    PropertyChanges {
+                                        rightCorner.corner: RoundCorner.CornerEnum.BottomRight
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
