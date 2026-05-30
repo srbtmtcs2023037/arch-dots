@@ -25,7 +25,7 @@ Item {
             visible: Config.options.bar.utilButtons.showScreenSnip
             sourceComponent: CircleUtilButton {
                 Layout.alignment: Qt.AlignVCenter
-                onClicked: Quickshell.execDetached(["qs", "-p", Quickshell.shellPath(""), "ipc", "call", "region", "screenshot"]);
+                onClicked: Quickshell.execDetached(["qs", "-p", Quickshell.shellPath(""), "ipc", "call", "region", "screenshot"])
                 MaterialSymbol {
                     horizontalAlignment: Qt.AlignHCenter
                     fill: 1
@@ -107,9 +107,9 @@ Item {
                 Layout.alignment: Qt.AlignVCenter
                 onClicked: event => {
                     if (Appearance.m3colors.darkmode) {
-                        Quickshell.execDetached(["bash", "-c", `${Directories.wallpaperSwitchScriptPath} --mode light --noswitch`])
+                        Quickshell.execDetached(["bash", "-c", `${Directories.wallpaperSwitchScriptPath} --mode light --noswitch`]);
                     } else {
-                        Quickshell.execDetached(["bash", "-c", `${Directories.wallpaperSwitchScriptPath} --mode dark --noswitch`])
+                        Quickshell.execDetached(["bash", "-c", `${Directories.wallpaperSwitchScriptPath} --mode dark --noswitch`]);
                     }
                 }
                 MaterialSymbol {
@@ -129,25 +129,31 @@ Item {
                 Layout.alignment: Qt.AlignVCenter
                 onClicked: event => {
                     if (PowerProfiles.hasPerformanceProfile) {
-                        switch(PowerProfiles.profile) {
-                            case PowerProfile.PowerSaver: PowerProfiles.profile = PowerProfile.Balanced
+                        switch (PowerProfiles.profile) {
+                        case PowerProfile.PowerSaver:
+                            PowerProfiles.profile = PowerProfile.Balanced;
                             break;
-                            case PowerProfile.Balanced: PowerProfiles.profile = PowerProfile.Performance
+                        case PowerProfile.Balanced:
+                            PowerProfiles.profile = PowerProfile.Performance;
                             break;
-                            case PowerProfile.Performance: PowerProfiles.profile = PowerProfile.PowerSaver
+                        case PowerProfile.Performance:
+                            PowerProfiles.profile = PowerProfile.PowerSaver;
                             break;
                         }
                     } else {
-                        PowerProfiles.profile = PowerProfiles.profile == PowerProfile.Balanced ? PowerProfile.PowerSaver : PowerProfile.Balanced
+                        PowerProfiles.profile = PowerProfiles.profile == PowerProfile.Balanced ? PowerProfile.PowerSaver : PowerProfile.Balanced;
                     }
                 }
                 MaterialSymbol {
                     horizontalAlignment: Qt.AlignHCenter
                     fill: 0
-                    text: switch(PowerProfiles.profile) {
-                        case PowerProfile.PowerSaver: return "energy_savings_leaf"
-                        case PowerProfile.Balanced: return "airwave"
-                        case PowerProfile.Performance: return "local_fire_department"
+                    text: switch (PowerProfiles.profile) {
+                    case PowerProfile.PowerSaver:
+                        return "energy_savings_leaf";
+                    case PowerProfile.Balanced:
+                        return "airwave";
+                    case PowerProfile.Performance:
+                        return "local_fire_department";
                     }
                     iconSize: Appearance.font.pixelSize.large
                     color: Appearance.colors.colOnLayer2
