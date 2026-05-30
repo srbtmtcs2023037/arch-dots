@@ -9,7 +9,6 @@ import qs.services
 import qs.modules.common
 import qs.modules.common.widgets
 import qs.modules.common.functions
-import qs.modules.waffle.looks
 
 Item {
     id: root
@@ -49,7 +48,7 @@ Item {
     Timer {
         id: scrollAnimationCheckTimer
         interval: 30 // Should be plenty for 60fps
-        onTriggered: root.scrolling = false;
+        onTriggered: root.scrolling = false
     }
     onWeekDiffChanged: {
         scrolling = true;
@@ -77,7 +76,7 @@ Item {
     }
     property date focusedDate: {
         // The last day of 3rd week shown is considered the focused month
-        const addedTime = (root.paddingWeeks + root.focusedWeekIndex) * root.millisPerWeek
+        const addedTime = (root.paddingWeeks + root.focusedWeekIndex) * root.millisPerWeek;
         const dateInTargetWeek = new Date(root.dateInFirstWeek.getTime() + addedTime);
         return DateUtils.getIthDayDateOfSameWeek(dateInTargetWeek, root.focusDayOfWeekIndex - root.locale.firstDayOfWeek, root.locale.firstdayOfWeek); // 4 = Thursday
     }
@@ -91,7 +90,7 @@ Item {
     implicitHeight: (6 * buttonSize) + (5 * buttonVerticalSpacing) + (2 * verticalPadding)
     implicitWidth: weeksColumn.implicitWidth
     clip: true
-    
+
     ColumnLayout {
         id: weeksColumn
         anchors {
@@ -106,7 +105,7 @@ Item {
         }
 
         spacing: root.buttonVerticalSpacing
-        
+
         Repeater {
             model: root.totalWeeks
 
