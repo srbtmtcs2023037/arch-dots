@@ -1,12 +1,39 @@
+# Large/generated directories
+go/
+yay/
 
+# Browser profiles (contain history, cookies, sessions, caches)
+BraveSoftware/
+mozilla/
+google-chrome/
 
+# Runtime/state directories
+dconf/
+pulse/
+session/
+qalculate/
 
+# User-specific files
+user-dirs.dirs
+user-dirs.locale
+kactivitymanagerdrc
 
+# Backups
+*.backup
+hypr.backup
 
-./yay
-./go
+# Temporary files
+*~
+*.swp
+*.swo
+*.tmp
 
-#browsers
-./BraveSoftware
-./mozilla
-./google-chrome
+# Logs and databases
+*.log
+*.db
+*.sqlite
+*.sqlite3
+
+# Editor metadata
+.vscode/
+.idea/
