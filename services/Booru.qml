@@ -57,40 +57,6 @@ Singleton {
                 })
             }
         },
-        "konachan": {
-            "name": "Konachan",
-            "url": "https://konachan.net",
-            "api": "https://konachan.net/post.json",
-            "description": Translation.tr("For desktop wallpapers | Good quality"),
-            "mapFunc": (response) => {
-                return response.map(item => {
-                    return {
-                        "id": item.id,
-                        "width": item.width,
-                        "height": item.height,
-                        "aspect_ratio": item.width / item.height,
-                        "tags": item.tags,
-                        "rating": item.rating,
-                        "is_nsfw": (item.rating != 's'),
-                        "md5": item.md5,
-                        "preview_url": item.preview_url,
-                        "sample_url": item.sample_url ?? item.file_url,
-                        "file_url": item.file_url,
-                        "file_ext": item.file_ext,
-                        "source": getWorkingImageSource(item.source) ?? item.file_url,
-                    }
-                })
-            },
-            "tagSearchTemplate": "https://konachan.net/tag.json?order=count&limit=10&name={{query}}*",
-            "tagMapFunc": (response) => {
-                return response.map(item => {
-                    return {
-                        "name": item.name,
-                        "count": item.count
-                    }
-                })
-            }
-        },
         "zerochan": {
             "name": "Zerochan",
             "url": "https://www.zerochan.net",
@@ -405,8 +371,8 @@ Singleton {
         }
 
         try {
-            // Required for danbooru and konachan
-            if (["danbooru", "konachan"].includes(currentProvider)) {
+            // Required for danbooru
+            if (["danbooru"].includes(currentProvider)) {
                 xhr.setRequestHeader("User-Agent", defaultUserAgent)
             }
             else if (currentProvider == "zerochan") {
@@ -457,8 +423,8 @@ Singleton {
         }
 
         try {
-            // Required for danbooru and konachan
-            if (["danbooru", "konachan"].includes(currentProvider)) {
+            // Required for danbooru
+            if (["danbooru"].includes(currentProvider)) {
                 xhr.setRequestHeader("User-Agent", defaultUserAgent)
             }
             xhr.send()
